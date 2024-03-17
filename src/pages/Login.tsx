@@ -7,6 +7,8 @@ export const Login = () => {
 
         window.location.href = url;
     }
+
+
     return <>
         <button onClick={loginClick}>LINEでログイン</button>
     </>

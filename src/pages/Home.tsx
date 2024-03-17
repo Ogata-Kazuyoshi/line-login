@@ -11,7 +11,7 @@ export const Home = () => {
 
     PostAccessTokenGet(searchParams.get('code'));
   };
-
+  //
   const PostAccessTokenGet = async (code: string | null) => {
     try {
       const data = {
@@ -28,23 +28,25 @@ export const Home = () => {
           headers: {
             'content-type': 'application/x-www-form-urlencoded',
           },
-        }
+          // withCredentials:true
+        },
+
       );
       console.log('GET Seccess:', response);
       // responseの中にアクセストークンが含まれているので
       // useContextなどで保管しておく
 
       // トップページにリダイレクトさせる
-      window.location.href = import.meta.env.VITE_REDIRECT_URL;
+      // window.location.href = import.meta.env.VITE_REDIRECT_URL;
     } catch (error) {
       console.error('GET Error:', error);
     }
   };
 
   useEffect(() => {
-    console.log('Current URL search params:', location.search); // この行を追加
-    console.log('Current URL:', window.location.href); // この行を追加
-    console.log('Current URL:', window.location.search); // この行を追加
+    // console.log('Current URL search params:', location.search); // この行を追加
+    // console.log('Current URL:', window.location.href); // この行を追加
+    // console.log('Current URL:', window.location.search); // この行を追加
     lineInfoProcess();
   }, []);
   return <>Home画面です</>;
