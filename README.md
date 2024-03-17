@@ -11,7 +11,7 @@
   - [④アクセストークン、IDトークンなどを返却](#④アクセストークン、IDトークンなどを返却)
   - [⑤アクセストークンを使用してUserInfoを取得依頼](#⑤アクセストークンを使用してUserInfoを取得依頼)
   - [⑥UserInfoのsub(Subject Identifier)がユーザー固有のID](#⑥UserInfoのsub(Subject Identifier)がユーザー固有のID)
-  - [ログアウト、IDトークンの検証](#ログアウト、IDトークンの検証)
+  - [ログアウト、アクセストークンの検証、IDトークンの検証](#ログアウト、アクセストークンの検証、IDトークンの検証)
 
 
 
@@ -72,6 +72,8 @@ export const Login = () => {
 const searchParams = new URLSearchParams(location.search);
 const code = searchParams.get('code')
 ```
+
+![redirecされたパス](./assets/images/redirect-path.png)
 
 ### ③アクセスToken発行を依頼
 - リダイレクトされた際のcodeを使用してAccessトークンの発行を依頼
@@ -141,7 +143,7 @@ export const getUserIdRepository = async (accessToken:string) => {
 ```
 
 
-### ログアウト、IDトークンの検証
+### ログアウト、アクセストークンの検証、IDトークンの検証
 
 - ログアウトしたい場合は下記
 ```ts
@@ -163,6 +165,17 @@ export const logoutRepository = async (accessToken: string | null) => {
     );
   } catch (err) {
     console.log('accessTokenGetRepositoryのエラーです : ',err)
+  }
+}
+```
+
+- アクセストークンの検証
+```ts
+export const checkTokenRepository =async (access_token:string) =>{
+  try {
+    return  await axios.get(`https://api.line.me/oauth2/v2.1/verify?access_token=${access_token}`)
+  } catch (err) {
+    console.log('checkTokenRepositoryでのエラーです :',err)
   }
 }
 ```
