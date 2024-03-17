@@ -9,7 +9,7 @@ export const Login = () => {
         buttounRef.current!.src = pressButton
         const lineId = import.meta.env.VITE_LINE_CHANNEL_ID
         const redirecturl = import.meta.env.VITE_REDIRECT_URL
-        const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${lineId}&redirect_uri=${redirecturl}&state=12345abcde&scope=openid&nonce=09876xyz`
+        const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${lineId}&redirect_uri=${redirecturl}&state=12345abcde&scope=openid&nonce=09876xyz&max_age=30`
         window.location.href = url;
     }
 

@@ -43,3 +43,44 @@ export const getUserIdRepository = async (accessToken:string) => {
         console.log("error : ",error)
     }
 }
+
+export const logoutRepository = async (accessToken: string | null) => {
+    const data = {
+        access_token:accessToken!,
+        client_id: import.meta.env.VITE_LINE_CHANNEL_ID, // チャネルID
+        client_secret: import.meta.env.VITE_CLIENT_SECRET, // チャネルシークレット
+    };
+    try {
+        return axios.post(
+            'https://api.line.me/oauth2/v2.1/revoke',
+            data,
+            {
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                },
+            },
+        );
+    } catch (err) {
+        console.log('accessTokenGetRepositoryのエラーです : ',err)
+    }
+}
+
+export const checkIDTokenRepository = async (idToken:string) => {
+    const data = {
+        id_token:idToken,
+        client_id: import.meta.env.VITE_LINE_CHANNEL_ID, // チャネルID
+    };
+    try {
+        return axios.post(
+            'https://api.line.me/oauth2/v2.1/verify',
+            data,
+            {
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                },
+            },
+        );
+    } catch (err) {
+        console.log('accessTokenGetRepositoryのエラーです : ',err)
+    }
+}
