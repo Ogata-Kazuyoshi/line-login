@@ -20,7 +20,6 @@ export const Home:React.FC<Props> = (props) => {
       }
       const checkTokenResult = await checkAccessTokenService(localStorage.getItem('access_token'))
       if (checkTokenResult) {
-        console.log(checkTokenResult.sub)
         props.setUserId(checkTokenResult.sub)
         navigate('/userpage')
       } else {

@@ -4,7 +4,6 @@ import {Login} from "./pages/Login.tsx";
 import {Home} from "./pages/Home.tsx";
 import {useState} from "react";
 import {UserPage} from "./pages/UserPage.tsx";
-// import {Home} from "./pages/Home.tsx";
 
 function App() {
     const [userId , setUserId] = useState<string | null>(null)

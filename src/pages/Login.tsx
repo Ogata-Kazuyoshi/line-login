@@ -31,7 +31,7 @@ export const Login = () => {
             onMouseLeave={loginLeave}
             onClick={loginClick}
         >
-            <img ref={buttounRef} />
+            <img ref={buttounRef} alt='line-button'/>
         </button>
     </>
 }    
