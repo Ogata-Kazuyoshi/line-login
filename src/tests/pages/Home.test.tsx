@@ -16,16 +16,13 @@ const originalLocation = window.location;
 
 describe('Home.tsxのテスト', () => {
     afterEach(() => {
+        // Object.defineProperty(window, 'localStorage', {
+        //     value: originalLocalStorage,
+        // });
         vi.restoreAllMocks();
-        Object.defineProperty(window, 'localStorage', {
-            value: originalLocalStorage,
-        });
-        Object.defineProperty(window, 'location', {
-            value: originalLocation,
-        });
-        Object.defineProperty(window, 'URLSearchParams', {
-            value: originalURLParams,
-        });
+        vi.stubGlobal("localStorage", originalLocalStorage)
+        vi.stubGlobal("location", originalLocation)
+        vi.stubGlobal('URLSearchParams', originalURLParams)
     });
 
     describe('クエリパラメーターのチェックテスト', () => {
@@ -55,7 +52,7 @@ describe('Home.tsxのテスト', () => {
             expect(accessTokenGetService).toHaveBeenCalledWith('abc');
             //実装側でaccessTokenGetServiceをawaitしてから実行するので、こっちの結果は待たないと、呼び出されない
             await waitFor(
-                ()=> expect(checkIDTokenService).toHaveBeenCalledWith('test-id-token')
+                () => expect(checkIDTokenService).toHaveBeenCalledWith('test-id-token')
             )
 
         });

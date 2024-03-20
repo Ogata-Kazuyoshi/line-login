@@ -7,7 +7,7 @@ import {
 
 export const checkAccessTokenService = async (access_token:string | null) => {
     if (access_token && await checkTokenRepository(access_token)) {
-            return getUserIdService(access_token)
+        return  getUserIdService(access_token)
     }
 }
 
